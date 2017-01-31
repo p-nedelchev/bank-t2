@@ -40,8 +40,8 @@ public class QuestionnaireListHandlerTest {
         QuestionnaireListHandler handler = new QuestionnaireListHandler(repository);
         Response response = handler.handle(request, new Tutor("admin", ""));
 
-        assertThat(reader().read(response), containsString(questionnaire1.getID().toString()));
-        assertThat(reader().read(response), containsString(questionnaire2.getID().toString()));
-        assertThat(reader().read(response), containsString(questionnaire3.getID().toString()));
+        assertThat(reader().read(response), containsString(questionnaire1.getId().toString()));
+        assertThat(reader().read(response), containsString(questionnaire2.getId().toString()));
+        assertThat(reader().read(response), containsString(questionnaire3.getId().toString()));
     }
 }

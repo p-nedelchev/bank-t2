@@ -39,6 +39,11 @@ public class InMemoryQuestionRepository implements QuestionRepository {
   }
 
   @Override
+  public Optional<Question> getRandomQuestionExcluding(Question question, Questionnaire questionnaire) {
+    return null;
+  }
+
+  @Override
     public List<Question> getQuestions() {
         List<Question> list = new LinkedList<>();
         for (String tutorId : tutorToQuestionsListMap.keySet()) {

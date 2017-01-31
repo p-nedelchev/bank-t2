@@ -36,7 +36,7 @@ public class RegisterQuestionnaireHandler implements SecuredHandler {
     String diff = req.param("difficulty");
 
     Questionnaire questionnaire = testRepository.getLastOrNewQuestionnaire();
-    questionnaireMessage = "Въпросник номер " + questionnaire.getID() + " беше обновен.";
+    questionnaireMessage = "Въпросник номер " + questionnaire.getId() + " беше обновен.";
 
     List<Question> queryQuestions = questionRepository.findQuestionsMatching(category, modul, subModul, theme, diff);
     List<Question> filteredQuestions = compareAndExcludeExistingQuestions(questionnaire, queryQuestions);

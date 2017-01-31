@@ -22,7 +22,7 @@ public class InMemoryQuestionnaireRepository implements QuestionnaireRepository 
 
   @Override
   public void update(Questionnaire questionnaire) {
-    questionnaires.put(questionnaire.getID(), questionnaire);
+    questionnaires.put(questionnaire.getId(), questionnaire);
   }
 
   @Override

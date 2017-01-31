@@ -24,6 +24,6 @@ public class FinishRegisterQuestionnaireHandler implements SecuredHandler {
     Map<Integer, String> answers = questionnaire.getAnswers();
     repository.update(questionnaire);
     return new RsFreemarker("finishquestionnaire.html", ImmutableMap.of("values", questionnaire.getQuestions(),
-            "answers", answers, "message", "Въпросник номер " + questionnaire.getID()));
+            "answers", answers, "message", "Въпросник номер " + questionnaire.getId()));
   }
 }

@@ -1,11 +1,13 @@
 package com.clouway.nvuapp.adapter.http.controllers;
 
 import com.clouway.nvuapp.core.QuestionRepository;
+import com.clouway.nvuapp.core.Questionnaire;
 import com.google.common.base.Optional;
 import com.clouway.nvuapp.core.Question;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author Vasil Mitov <v.mitov.clouway@gmail.com>
@@ -60,6 +62,23 @@ public class InMemoryQuestionRepository implements QuestionRepository {
       }
     }
     return result;
+  }
+
+  @Override
+  public Optional<Question> getRandomQuestionExcluding(Question question, Questionnaire questionnaire) {
+    List<Question> availableQuestions = findQuestionsMatching(
+            question.getCategory(),
+            String.valueOf(question.getModule()),
+            String.valueOf(question.getSubModule()),
+            String.valueOf(question.getTheme()),
+            String.valueOf(question.getDifficulty()));
+    availableQuestions.remove(question);
+    availableQuestions.removeAll(questionnaire.getQuestions());
+    if(availableQuestions.isEmpty()) {
+      return Optional.absent();
+    }
+    int randomIndex = ThreadLocalRandom.current().nextInt(availableQuestions.size());
+    return Optional.of(availableQuestions.get(randomIndex));
   }
 }
 

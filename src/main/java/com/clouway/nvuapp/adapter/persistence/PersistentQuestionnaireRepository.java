@@ -31,7 +31,7 @@ public class PersistentQuestionnaireRepository implements QuestionnaireRepositor
     String data = codec.marshallToString(questionnaire);
     String query = "UPDATE QUESTIONNAIRES" +
             " SET QUESTIONNAIRE='" + data + "'" +
-            " WHERE ID=" + questionnaire.getID();
+            " WHERE ID=" + questionnaire.getId();
     dataStore.update(query);
   }
 
@@ -67,7 +67,7 @@ public class PersistentQuestionnaireRepository implements QuestionnaireRepositor
     if (questionnaire.noAnswers()) {
       return questionnaire;
     }
-    Questionnaire newQuestionnaire = new Questionnaire(questionnaire.getID() + 1);
+    Questionnaire newQuestionnaire = new Questionnaire(questionnaire.getId() + 1);
     register(newQuestionnaire);
     return newQuestionnaire;
   }

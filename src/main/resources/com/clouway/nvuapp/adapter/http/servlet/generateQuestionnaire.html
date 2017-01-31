@@ -7,7 +7,8 @@
 </head>
 <body>
 <#include "/adminNavbar.ftl">
-    <h1><#if message??>
+<h1>
+    <#if message??>
         ${message}
     </#if>
     </h1>
@@ -15,7 +16,13 @@
     <#list values>
         <div class="questionList">
         <#items as question>
+                <form action="/adminHome/unfinishedEdit" method="post">
+                   <button class="buttonlink" name="action" value="delete" type="submit">Изтрий</button>
+                   <button class="buttonlink" name="action" value="replace" type="submit">Замени</button>
+                   <input type="hidden" name="index" value="${question?index}">
+                </form>
                 <table>
+                    <td>Въпрос ${question?index+1}</td>
                     <tr><th>Въпрос ${question?index+1}<br>
                         ${question.question}
                     </th></tr>
@@ -24,24 +31,26 @@
                     <tr><td>C) ${question.answerC}</td></tr>
 
                 </table><br>
+
             </#items>
         </div>
             <br>
-        <h1><#if questionMessage??>
+            <#if questionMessage??>
                 ${questionMessage}
             </#if>
-            </h1>
-            <form class="questionList" action="/adminHome/questionnaire" method="post">
+            <form action="/adminHome/questionnaire" method="post">
                 <#include "/questionnaireFilter.ftl">
             </form>
         <#else>
-            <form class="questionList" action="/adminHome/questionnaire" method="post">
+            <form action="/adminHome/questionnaire" method="post">
                 <#include "/questionnaireFilter.ftl">
             </form>
-            <h1>Няма въпроси все още.</h1>
+            <p>Няма въпроси все още.</p>
     </#list>
+</h1>
+
 <div>
-    <form class="questionList" action="/adminHome/finishquestionnaire">
+    <form action="/adminHome/finishquestionnaire">
         <input class="buttonlink" type="submit" value="Завърши въпросник"/>
     </form>
 </div>

@@ -69,7 +69,7 @@ public class RegisterQuestionnaireHandlerTest {
             "Duplicate question type from above to see what will happend"));
     assertFalse(tests.getLastOrNewQuestionnaire().getQuestions().isEmpty());
     assertThat(tests.getLastOrNewQuestionnaire().getQuestions().size(), is(2));
-    assertThat(tests.getLastOrNewQuestionnaire().getID(), is(1));
+    assertThat(tests.getLastOrNewQuestionnaire().getId(), is(1));
     assertThat(reader().read(response), containsString("Въпросник номер 1 беше обновен."));
   }
 
@@ -108,7 +108,7 @@ public class RegisterQuestionnaireHandlerTest {
 
     handler.handle(fakeRequest, new Tutor("", ""));
 
-    assertThat(tests.getLastOrNewQuestionnaire().getID(), is(1));
+    assertThat(tests.getLastOrNewQuestionnaire().getId(), is(1));
     assertThat(tests.getLastOrNewQuestionnaire().getQuestions().size(), is(3));
   }
 
