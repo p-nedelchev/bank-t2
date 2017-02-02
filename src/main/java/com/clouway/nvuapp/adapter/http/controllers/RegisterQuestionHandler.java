@@ -1,12 +1,7 @@
 package com.clouway.nvuapp.adapter.http.controllers;
 
 import com.clouway.nvuapp.adapter.http.servlet.RsFreemarker;
-import com.clouway.nvuapp.core.Question;
-import com.clouway.nvuapp.core.QuestionRepository;
-import com.clouway.nvuapp.core.Request;
-import com.clouway.nvuapp.core.Response;
-import com.clouway.nvuapp.core.SecuredHandler;
-import com.clouway.nvuapp.core.Tutor;
+import com.clouway.nvuapp.core.*;
 
 import java.util.Collections;
 
@@ -14,7 +9,6 @@ import java.util.Collections;
  * @author Vasil Mitov <v.mitov.clouway@gmail.com>
  */
 public class RegisterQuestionHandler implements SecuredHandler {
-
   private QuestionRepository repository;
 
   public RegisterQuestionHandler(QuestionRepository repository) {
@@ -35,6 +29,7 @@ public class RegisterQuestionHandler implements SecuredHandler {
     if (checkForNullOrEmpty(category, module, subModl, theme, diff, question, answerA, answerB, answerC)) {
       return new RsFreemarker("createQuestion.html", Collections.<String, Object>singletonMap("message", "Всички полета трябва да бъдат попълнени."));
     }
+
     String message = repository.register(
             new Question(tutor.tutorId, category, Integer.valueOf(module),
                     Integer.valueOf(subModl), Integer.valueOf(theme),

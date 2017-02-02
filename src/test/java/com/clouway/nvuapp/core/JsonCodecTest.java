@@ -1,8 +1,5 @@
 package com.clouway.nvuapp.core;
 
-import com.clouway.nvuapp.core.JsonCodec;
-import com.clouway.nvuapp.core.Question;
-import com.clouway.nvuapp.core.Questionnaire;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -26,5 +23,22 @@ public class JsonCodecTest {
     Questionnaire unmarshalledQuestionnaire = codec.unmarshall(data);
     assertThat(questionnaire, is(unmarshalledQuestionnaire));
 
+  }
+
+  @Test
+  public void jsonCodecEscapeQuotes() throws Exception {
+    JsonCodec codec = new JsonCodec();
+
+    Question question = new Question("admin", "A1", 1, 2, 3, 4, "question with \"quotes\"", "a", "b", "c");
+    Questionnaire realQuestionnaire = new Questionnaire(1);
+
+    realQuestionnaire.addQuestions(new LinkedList<Question>() {{
+      add(question);
+    }});
+
+    String data = codec.marshallToString(realQuestionnaire);
+    Questionnaire unmarshalledQuestionnaire = codec.unmarshall(data);
+
+    assertThat(realQuestionnaire, is(unmarshalledQuestionnaire));
   }
 }

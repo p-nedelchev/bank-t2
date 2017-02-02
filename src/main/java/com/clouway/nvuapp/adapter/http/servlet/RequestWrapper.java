@@ -17,7 +17,7 @@ public class RequestWrapper implements Request {
 
   @Override
   public String param(String name) {
-    return request.getParameter(name);
+    return escapeQuotes(request.getParameter(name));
   }
 
   @Override
@@ -31,6 +31,13 @@ public class RequestWrapper implements Request {
       if (each.getName().equals(cookieName)) {
         return each;
       }
+    }
+    return null;
+  }
+
+  private String escapeQuotes(String param) {
+    if (param != null) {
+      return param.replaceAll("[\"\']", "“");
     }
     return null;
   }
