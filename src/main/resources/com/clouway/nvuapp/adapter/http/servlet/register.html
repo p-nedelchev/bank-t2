@@ -7,19 +7,12 @@
     <script src="assets/register.js"></script>
 </head>
 <h1>Регистрация</h1>
-<form name='registration' onSubmit="return registerAcc();" action="/registration" method="POST">
-    <ul>
-        <li><label for="tutor_id"></label></li>
-        <li><input placeholder="id" id="tutor_id" type="text" name="TUTOR_ID" size="16"/></li>
-        <li><label for="password"></label></li>
-        <li><input placeholder="Password" id="password" type="password" name="PASSWORD" size="16"/></li>
-        <li><label for="confirmPassword"></label></li>
-        <li><input placeholder="Confirm Password" id="confirmPassword" type="password" name="CONFIRMPASSWORD" size="16"/></li>
-        <li><input type="submit" name="submit" value="Създай Акаунт"/></li>
-    </ul>
-</form>
-<form action="/login">
-    <input type="submit" value="Вход"/>
+<form class="loginForm" name='registration' method="POST">
+    <input placeholder="id" id="tutor_id" type="text" name="TUTOR_ID" size="16"/>
+    <input placeholder="Password" id="password" type="password" name="PASSWORD" size="16"/>
+    <input placeholder="Confirm Password" id="confirmPassword" type="password" name="CONFIRMPASSWORD" size="16"/>
+    <input type="submit" formaction="/registration" onsubmit="return registerAcc();" name="submit" value="Създай Акаунт"/>
+    <input type="submit" formaction="/login" value="Вход"/>
 </form>
 <br>
 <p id="message"></p>

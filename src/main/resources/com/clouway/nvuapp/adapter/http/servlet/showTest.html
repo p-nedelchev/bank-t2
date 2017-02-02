@@ -9,6 +9,7 @@
 <#include "/adminNavbar.ftl">
     <div class="questionList">
     <h1>Въпросник № ${num}</h1>
+        <a href="/pdf?id=${num}" target="_blank">Виж в PDF</a>
     <#list questions as answer, question>
         <table class="table">
             <tr><th>${question.question}</th></tr>

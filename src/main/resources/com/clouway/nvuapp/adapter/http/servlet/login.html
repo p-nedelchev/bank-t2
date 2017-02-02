@@ -6,11 +6,11 @@
     <link rel="stylesheet" type="text/css" href="assets/project.css">
 </head>
 <body>
-<form class="loginForm">
+<form class="loginForm" method="post">
     <input placeholder="ID" id="loginid" type="text" name="LoginID" size="16"/>
     <input placeholder="Password" id="loginpass" type="password" name="LoginPass" size="16"/>
-    <input type="submit" onsubmit="action='/login' method= 'post'" value="Вход"/>
-    <input type="submit" onsubmit="action='/registration' method= 'post'" value="Регистрация"/>
+    <input type="submit" formaction="/login" value="Вход"/>
+    <a href="/registration">Регистрация</a>
     <br>
     <#if message??>
         ${message}

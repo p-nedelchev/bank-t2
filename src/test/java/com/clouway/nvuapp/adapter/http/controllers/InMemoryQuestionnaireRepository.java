@@ -32,7 +32,7 @@ public class InMemoryQuestionnaireRepository implements QuestionnaireRepository 
 
   @Override
   public Questionnaire getQuestionnaire(int id) {
-    return null;
+    return questionnaires.get(id);
   }
 
   @Override
